@@ -1,9 +1,10 @@
 import React from 'react'
 import App from 'next/app'
 import Head from "next/head"
-import Layout from "../components/layout";
+import Layout from "../components/layout"
+import withData from '../lib/apollo'
 
-export default class MyApp extends App {
+class MyApp extends App {
 	render() {
 		const {Component, pageProps} = this.props
 		return (
@@ -13,3 +14,5 @@ export default class MyApp extends App {
 		)
 	}
 }
+//permet d'injecter la donée dans l'application
+export default withData(MyApp)

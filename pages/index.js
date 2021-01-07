@@ -1,15 +1,30 @@
-import {Button, Alert} from 'reactstrap'
-
+import {Col, Input, InputGroup, InputGroupAddon, Row} from "reactstrap";
+import RestaurantList from "../components/RestaurantList";
+import {useState} from "react";
 export default () => {
+	const [query, updateQuery] = useState('')
 	return (
 		<div className='container-fluid'>
-			<div>
-				<Alert color='primary'>
-					Super Projet avec NextJS et Bootstrap
-				</Alert>
-				&nbsp;<Button color='primary'> Hello from nextjs</Button>
-			</div>
+			<Row>
+				<Col>
+					<div className='search'>
+						<InputGroup>
+							<InputGroupAddon addonType='append' >Search</InputGroupAddon>
+							<Input onChange={e => updateQuery(e.target.value.toLocaleLowerCase())}
+									value={query}>
+							</Input>
+						</InputGroup>
+					</div>
+					<RestaurantList search={query}/>
+				</Col>
+			</Row>
+			<style jsx>
+				{`
+					.search{
+						margin: 3rem;
+					}
+				`}
+			</style>
 		</div>
 	)
-
 }
